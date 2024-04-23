@@ -1,3 +1,4 @@
+import 'package:dept_connect/components/snack_bar.dart';
 import 'package:dept_connect/components/user_button.dart';
 import 'package:dept_connect/components/user_text_field.dart';
 import 'package:dept_connect/services/auth_service.dart';
@@ -13,23 +14,28 @@ class FacultyLoginPage extends StatelessWidget {
   void _facultyLogin(BuildContext context) async {
     final email = _emailController.text.trim();
     final password = _emailController.text.trim();
+    bool loginSuccess = await _authService.facultyLogin(email, password);
+    if (loginSuccess) {
+      CustomSnackBar(message: "Successfull login").show(context);
+    } else {
+      CustomSnackBar(message: "Failure login").show(context);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final args =
+        ModalRoute.of(context)!.settings.arguments as Map<String, String>;
+    String id = args['id']!;
     return Scaffold(
       appBar: AppBar(
-        title: Text("HOD"),
+        title: Text(id),
         centerTitle: true,
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Text("HOD"),
-            // const SizedBox(height: 15),
-
-            //email id
             UserTextField(
               hintText: "Email",
               obscureText: false,
@@ -38,12 +44,12 @@ class FacultyLoginPage extends StatelessWidget {
             const SizedBox(height: 10),
             //password
             UserTextField(
-              hintText: "Passowrd",
+              hintText: "Password",
               obscureText: true,
               controller: _passwordController,
             ),
             const SizedBox(height: 10),
-            UserButton(label: "Login", onPressed: () {}),
+            UserButton(label: "Login", onPressed: () => _facultyLogin(context)),
           ],
         ),
       ),

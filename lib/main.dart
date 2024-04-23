@@ -1,5 +1,5 @@
 import 'package:dept_connect/firebase_options.dart';
-import 'package:dept_connect/pages/faculty/faculty_login_page.dart';
+import 'package:dept_connect/screens/faculty/faculty_login_page.dart';
 import 'package:dept_connect/screens/faculty/faculty_page.dart';
 import 'package:dept_connect/screens/main_page.dart';
 import 'package:dept_connect/static/components/announcement_input_tile.dart';
