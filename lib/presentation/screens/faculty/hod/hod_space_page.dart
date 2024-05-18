@@ -1,5 +1,5 @@
-import "package:dept_connect/static/components/hod_drawer.dart";
-import "package:dept_connect/static/components/space_tile.dart";
+import "package:dept_connect/presentation/components/hod_drawer.dart";
+import "package:dept_connect/presentation/components/space_tile.dart";
 import "package:flutter/material.dart";
 
 class HodSpacePage extends StatelessWidget {

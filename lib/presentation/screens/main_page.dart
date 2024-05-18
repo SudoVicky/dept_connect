@@ -1,4 +1,4 @@
-import 'package:dept_connect/components/user_button.dart';
+import 'package:dept_connect/presentation/components/user_button.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatelessWidget {

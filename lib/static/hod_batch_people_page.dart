@@ -1,4 +1,4 @@
-import 'package:dept_connect/static/components/section_tile.dart';
+import 'package:dept_connect/presentation/components/section_tile.dart';
 import 'package:flutter/material.dart';
 
 class HodBatchPeoplePage extends StatelessWidget {

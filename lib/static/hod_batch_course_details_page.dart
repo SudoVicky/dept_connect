@@ -1,4 +1,4 @@
-import 'package:dept_connect/static/components/course_detials_tile.dart';
+import 'package:dept_connect/presentation/components/course_detials_tile.dart';
 import 'package:flutter/material.dart';
 
 class HodBatchCourseDetailsPage extends StatelessWidget {

@@ -1,7 +1,15 @@
+import 'package:dept_connect/data/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
 class HodDrawer extends StatelessWidget {
-  const HodDrawer({super.key});
+  final AuthService _authService = AuthService();
+
+  HodDrawer({super.key});
+
+  void _logout(BuildContext context) async {
+    await _authService.logout();
+    Navigator.pushReplacementNamed(context, '/'); // Navigate to the main page
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +51,7 @@ class HodDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.logout),
             title: Text("Logout"),
-            onTap: () {},
+            onTap: () => _logout(context),
           )
         ],
       ),

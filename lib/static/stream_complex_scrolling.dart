@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dept_connect/static/components/space_tile.dart';
+import 'package:dept_connect/presentation/components/space_tile.dart';
 
 class HodPage extends StatelessWidget {
   const HodPage({super.key});

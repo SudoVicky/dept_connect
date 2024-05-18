@@ -1,7 +1,7 @@
-import 'package:dept_connect/static/components/hod_drawer.dart';
-import 'package:dept_connect/static/components/message_tile.dart';
-import 'package:dept_connect/static/components/stream_announce_tile.dart';
-import 'package:dept_connect/static/components/stream_tile.dart';
+import 'package:dept_connect/presentation/components/hod_drawer.dart';
+import 'package:dept_connect/presentation/components/message_tile.dart';
+import 'package:dept_connect/presentation/components/stream_announce_tile.dart';
+import 'package:dept_connect/presentation/components/stream_tile.dart';
 import 'package:flutter/material.dart';
 
 class HodBatchStreamPage extends StatelessWidget {

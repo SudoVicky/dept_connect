@@ -1,5 +1,5 @@
-import 'package:dept_connect/static/components/announcement_input_tile.dart';
-import 'package:dept_connect/static/components/checkbox_tile.dart';
+import 'package:dept_connect/presentation/components/announcement_input_tile.dart';
+import 'package:dept_connect/presentation/components/checkbox_tile.dart';
 import 'package:flutter/material.dart';
 
 class HodBatchAnnouncementPage extends StatelessWidget {

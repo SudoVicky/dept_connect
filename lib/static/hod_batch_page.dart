@@ -1,6 +1,6 @@
-import 'package:dept_connect/static/components/hod_drawer.dart';
-import 'package:dept_connect/static/components/stream_announce_tile.dart';
-import 'package:dept_connect/static/components/stream_tile.dart';
+import 'package:dept_connect/presentation/components/hod_drawer.dart';
+import 'package:dept_connect/presentation/components/stream_announce_tile.dart';
+import 'package:dept_connect/presentation/components/stream_tile.dart';
 import 'package:dept_connect/static/hod_batch_course_page.dart';
 import 'package:dept_connect/static/hod_batch_people_page.dart';
 import 'package:dept_connect/static/hod_batch_stream_page.dart';

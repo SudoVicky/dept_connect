@@ -1,5 +1,5 @@
-import 'package:dept_connect/static/components/people_details_heading.dart';
-import 'package:dept_connect/static/components/people_details_tile.dart';
+import 'package:dept_connect/presentation/components/people_details_heading.dart';
+import 'package:dept_connect/presentation/components/people_details_tile.dart';
 import 'package:flutter/material.dart';
 
 class HodBatchPeopleSection extends StatelessWidget {
