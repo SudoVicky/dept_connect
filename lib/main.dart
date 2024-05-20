@@ -1,4 +1,5 @@
-import 'package:dept_connect/bloc/authentication/bloc/authentication_bloc.dart';
+import 'package:dept_connect/bloc/authentication/authentication_bloc.dart';
+import 'package:dept_connect/bloc/hod_batch/hod_batch_bloc.dart';
 import 'package:dept_connect/firebase_options.dart';
 import 'package:dept_connect/presentation/screens/faculty/faculty_login_page.dart';
 import 'package:dept_connect/presentation/screens/faculty/faculty_page.dart';
@@ -17,10 +18,14 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
-    BlocProvider(
-      create: (context) => AuthenticationBloc(),
-      child: const MyApp(),
-    ),
+    MultiBlocProvider(providers: [
+      BlocProvider<AuthenticationBloc>(
+        create: (context) => AuthenticationBloc(),
+      ),
+      BlocProvider<HodBatchBloc>(
+        create: (context) => HodBatchBloc(),
+      )
+    ], child: const MyApp()),
   );
 }
 

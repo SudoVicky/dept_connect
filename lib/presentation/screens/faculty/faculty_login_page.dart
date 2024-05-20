@@ -1,6 +1,6 @@
-import 'package:dept_connect/bloc/authentication/bloc/authentication_bloc.dart';
-import 'package:dept_connect/bloc/authentication/bloc/authentication_event.dart';
-import 'package:dept_connect/bloc/authentication/bloc/authentication_state.dart';
+import 'package:dept_connect/bloc/authentication/authentication_bloc.dart';
+import 'package:dept_connect/bloc/authentication/authentication_event.dart';
+import 'package:dept_connect/bloc/authentication/authentication_state.dart';
 import 'package:dept_connect/presentation/components/user_button.dart';
 import 'package:dept_connect/presentation/components/user_text_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -24,7 +24,7 @@ class FacultyLoginPage extends StatelessWidget {
     }
     final authenticationBloc = BlocProvider.of<AuthenticationBloc>(context);
 
-    authenticationBloc.add(AuthenticationLoginRequested(email, password));
+    authenticationBloc.add(AuthenticationLoginRequested(email, password, user));
   }
 
   @override
@@ -43,6 +43,12 @@ class FacultyLoginPage extends StatelessWidget {
           if (state is AuthenticationFailure) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.error)));
+          } else if (state is AuthenticationAuthenticated) {
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text("Successfully logged")));
+            Navigator.pushNamedAndRemoveUntil(
+                context, "/hod_space_page", (route) => false,
+                arguments: {"dept": state.dept});
           }
         },
         child: Center(
@@ -76,7 +82,7 @@ class FacultyLoginPage extends StatelessWidget {
                   } else if (state is AuthenticationUnauthenticated) {
                     return Text('Unauthenticated! Show Login Form');
                   } else if (state is AuthenticationFailure) {
-                    return Text('Authentication Failed');
+                    return Text(state.error);
                   } else {
                     return Container();
                   }

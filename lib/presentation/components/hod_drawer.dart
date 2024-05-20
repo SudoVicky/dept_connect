@@ -1,13 +1,15 @@
+import 'package:dept_connect/bloc/authentication/authentication_bloc.dart';
+import 'package:dept_connect/bloc/authentication/authentication_event.dart';
+import 'package:dept_connect/bloc/authentication/authentication_state.dart';
 import 'package:dept_connect/data/services/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HodDrawer extends StatelessWidget {
-  final AuthService _authService = AuthService();
-
   HodDrawer({super.key});
 
   void _logout(BuildContext context) async {
-    await _authService.logout();
+    BlocProvider.of<AuthenticationBloc>(context).add(AuthenticationLoggedOut());
     Navigator.pushReplacementNamed(context, '/'); // Navigate to the main page
   }
 
