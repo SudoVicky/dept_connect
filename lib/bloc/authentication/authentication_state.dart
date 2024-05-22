@@ -20,8 +20,6 @@ class AuthenticationAuthenticated extends AuthenticationState {
   List<Object?> get props => [email, user, dept];
 }
 
-class AuthenticationUnauthenticated extends AuthenticationState {}
-
 class AuthenticationFailure extends AuthenticationState {
   final String error;
 

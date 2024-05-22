@@ -1,9 +1,7 @@
 import 'package:dept_connect/presentation/components/hod_drawer.dart';
-import 'package:dept_connect/presentation/components/stream_announce_tile.dart';
-import 'package:dept_connect/presentation/components/stream_tile.dart';
-import 'package:dept_connect/static/hod_batch_course_page.dart';
-import 'package:dept_connect/static/hod_batch_people_page.dart';
-import 'package:dept_connect/static/hod_batch_stream_page.dart';
+import 'package:dept_connect/presentation/screens/faculty/hod/hod_batch_course_page.dart';
+import 'package:dept_connect/presentation/screens/faculty/hod/hod_batch_people_page.dart';
+import 'package:dept_connect/presentation/screens/faculty/hod/hod_batch_stream_page.dart';
 import 'package:flutter/material.dart';
 
 class HodBatchPage extends StatefulWidget {

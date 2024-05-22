@@ -3,7 +3,6 @@ import 'package:dept_connect/bloc/authentication/authentication_event.dart';
 import 'package:dept_connect/bloc/authentication/authentication_state.dart';
 import 'package:dept_connect/presentation/components/user_button.dart';
 import 'package:dept_connect/presentation/components/user_text_field.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -76,11 +75,9 @@ class FacultyLoginPage extends StatelessWidget {
                   if (state is AuthenticationInitial) {
                     return Text("Initial");
                   } else if (state is AuthenticationLoading) {
-                    return CircularProgressIndicator();
+                    return Center(child: CircularProgressIndicator());
                   } else if (state is AuthenticationAuthenticated) {
                     return Text("Authenticated");
-                  } else if (state is AuthenticationUnauthenticated) {
-                    return Text('Unauthenticated! Show Login Form');
                   } else if (state is AuthenticationFailure) {
                     return Text(state.error);
                   } else {

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dept_connect/services/secure_store_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'authentication_event.dart';
 import 'authentication_state.dart';
@@ -8,10 +9,12 @@ class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final SecureStorageService _secureStorage = SecureStorageService();
 
   AuthenticationBloc() : super(AuthenticationInitial()) {
     on<AuthenticationLoginRequested>(_mapLoginRequestedToState);
     on<AuthenticationLoggedOut>(_mapLoggedOutToState);
+    on<AuthenticationLocalLoginRequested>(_mapLocalLoginRequested);
   }
 
   void _mapLoginRequestedToState(
@@ -44,6 +47,12 @@ class AuthenticationBloc
           String dept = hodData['department']!;
           emit(AuthenticationAuthenticated(
               email: email, user: event.user, dept: dept));
+
+          await _secureStorage.saveUserData(
+            email: email,
+            user: event.user,
+            department: dept,
+          );
         } else {
           // If no document is found, emit AuthenticationFailure state with an error message
           emit(AuthenticationFailure("User not found in faculty collection."));
@@ -88,13 +97,34 @@ class AuthenticationBloc
     return errorMessage;
   }
 
+  void _mapLocalLoginRequested(
+    AuthenticationLocalLoginRequested event,
+    Emitter<AuthenticationState> emit,
+  ) async {
+    emit(AuthenticationLoading());
+    final secureStorage = SecureStorageService();
+
+    final userData = await secureStorage.getUserData();
+
+    if (userData != null) {
+      final email = userData[SecureStorageService.emailKey]!;
+      final user = userData[SecureStorageService.userKey]!;
+      final dept = userData[SecureStorageService.departmentKey]!;
+      emit(AuthenticationAuthenticated(email: email, user: user, dept: dept));
+    } else {
+      emit(AuthenticationInitial());
+    }
+  }
+
   void _mapLoggedOutToState(
     AuthenticationLoggedOut event,
     Emitter<AuthenticationState> emit,
   ) {
     // Log out the user
     _auth.signOut();
-    // Emit AuthenticationUnauthenticated state
-    emit(AuthenticationUnauthenticated());
+    // Delete user data from secure storage
+    _secureStorage.deleteUserData();
+
+    emit(AuthenticationInitial());
   }
 }
