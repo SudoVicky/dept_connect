@@ -33,6 +33,7 @@ class _HodBatchPageState extends State<HodBatchPage> {
   Widget build(BuildContext context) {
     final List<Widget> hodBatchPages = [
       HodBatchStreamPage(
+          dept: widget.dept,
           batchId: widget.batchId,
           semesterNo: widget.semesterNo,
           year: widget.year),
