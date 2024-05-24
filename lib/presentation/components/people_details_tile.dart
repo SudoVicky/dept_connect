@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
 class PeopleDetailsTile extends StatelessWidget {
-  final String title;
-  final int count;
-  const PeopleDetailsTile(
-      {super.key, required this.title, required this.count});
+  final List<String> studentNames;
+
+  const PeopleDetailsTile({super.key, required this.studentNames});
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +25,14 @@ class PeopleDetailsTile extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  title,
+                  studentNames[index],
                   style: TextStyle(fontSize: 15),
                 ),
               ],
             ),
           );
         },
-        childCount: count,
+        childCount: studentNames.length,
       ),
     );
   }

@@ -7,11 +7,11 @@ sealed class HodBatchState extends Equatable {
   List<Object> get props => [];
 }
 
-final class HodBatchInitial extends HodBatchState {}
+class HodBatchInitial extends HodBatchState {}
 
-final class HodBatchLoading extends HodBatchState {}
+class HodBatchLoading extends HodBatchState {}
 
-final class HodBatchLoaded extends HodBatchState {
+class HodBatchLoaded extends HodBatchState {
   // final List<String> batchNames;
   final List<BatchData> batchData;
 
@@ -21,7 +21,7 @@ final class HodBatchLoaded extends HodBatchState {
   List<Object> get props => [batchData];
 }
 
-final class HodBatchError extends HodBatchState {
+class HodBatchError extends HodBatchState {
   final String errorMessage;
 
   const HodBatchError(this.errorMessage);

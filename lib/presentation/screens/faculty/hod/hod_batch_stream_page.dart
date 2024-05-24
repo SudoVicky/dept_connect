@@ -1,11 +1,17 @@
-import 'package:dept_connect/presentation/components/hod_drawer.dart';
 import 'package:dept_connect/presentation/components/message_tile.dart';
 import 'package:dept_connect/presentation/components/stream_announce_tile.dart';
 import 'package:dept_connect/presentation/components/stream_tile.dart';
 import 'package:flutter/material.dart';
 
 class HodBatchStreamPage extends StatelessWidget {
-  const HodBatchStreamPage({super.key});
+  final String batchId;
+  final int semesterNo;
+  final String year;
+  const HodBatchStreamPage(
+      {super.key,
+      required this.batchId,
+      required this.semesterNo,
+      required this.year});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +19,10 @@ class HodBatchStreamPage extends StatelessWidget {
       child: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
-            child: StreamTile(title: "2021 - 2026 batch", subtitle: "III year"),
+            child: StreamTile(
+              title: "$batchId batch",
+              subtitle: "$semesterNo Sem, $year year",
+            ),
           ),
           SliverToBoxAdapter(
             child: StreamAnnounceTile(

@@ -36,13 +36,18 @@ class HodSpacePage extends StatelessWidget {
                       BatchData batchData = state.batchData[index];
                       String year = Utils.convertSemesterToRomanYear(
                           batchData.semesterNo);
+                      String batchId = batchData.batchId;
+                      int semesterNo = batchData.semesterNo;
                       return SpaceTile(
-                          title: batchData.batchId,
-                          subtitle: "${batchData.semesterNo} sem, $year year",
+                          title: batchId,
+                          subtitle: "$semesterNo sem, $year year",
                           onTap: () {
                             Navigator.pushNamed(context, "/hod_batch_page",
                                 arguments: {
-                                  'batchData': batchData,
+                                  'dept': dept,
+                                  'batchId': batchId,
+                                  'semesterNo': semesterNo,
+                                  'year': year
                                 });
                           });
                     },

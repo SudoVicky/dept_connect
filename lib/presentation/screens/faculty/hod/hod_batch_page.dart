@@ -5,7 +5,16 @@ import 'package:dept_connect/presentation/screens/faculty/hod/hod_batch_stream_p
 import 'package:flutter/material.dart';
 
 class HodBatchPage extends StatefulWidget {
-  const HodBatchPage({super.key});
+  final String dept;
+  final String batchId;
+  final int semesterNo;
+  final String year;
+  const HodBatchPage(
+      {super.key,
+      required this.batchId,
+      required this.semesterNo,
+      required this.year,
+      required this.dept});
 
   @override
   State<HodBatchPage> createState() => _HodBatchPageState();
@@ -20,17 +29,24 @@ class _HodBatchPageState extends State<HodBatchPage> {
     });
   }
 
-  final List<Widget> _hodBatchPages = [
-    HodBatchStreamPage(),
-    HodBatchCoursePage(),
-    HodBatchPeoplePage(),
-  ];
   @override
   Widget build(BuildContext context) {
+    final List<Widget> hodBatchPages = [
+      HodBatchStreamPage(
+          batchId: widget.batchId,
+          semesterNo: widget.semesterNo,
+          year: widget.year),
+      HodBatchCoursePage(),
+      HodBatchPeoplePage(
+        dept: widget.dept,
+        batchId: widget.batchId,
+      ),
+    ];
+
     return Scaffold(
       appBar: AppBar(),
       drawer: HodDrawer(),
-      body: _hodBatchPages[_selectedIndex],
+      body: hodBatchPages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _navigateBottomBar,
